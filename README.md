@@ -12,3 +12,7 @@ Additionally, the `users` table includes an `is_admin` flag, which is a boolean 
 Each table is equipped with foreign key constraints to maintain data integrity and ensure proper relationships between entities.
 
 ![Database Schema](./demo/schema.png)
+
+## Authentication
+
+The authentication mechanism is implemented using Laravel Breeze. During the user creation process, the `is_admin` flag is set to `0` by default, initializing new users as teachers with standard user privileges. This setup ensures that users are correctly categorized and can be granted administrative rights as needed.
