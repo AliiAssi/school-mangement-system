@@ -44,6 +44,19 @@ class User extends Authenticatable
         ];
     }
 
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'teacher_subject_class')
+                    ->withPivot('weekly_sessions');
+    }
+
+    public function classes()
+    {
+        return $this->belongsToMany(_Class::class, 'class_subject', 'subject_id', 'class_id')
+                ->withPivot('required_sessions');
+    }
+
+
     /**
      * The "booted" method of the model.
      *
