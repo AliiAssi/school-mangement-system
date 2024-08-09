@@ -54,6 +54,7 @@
                                                 </ul>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <a href="{{ route('subjects.show', $subject->id) }}" class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 transition">{{ __('Show') }}</a>
                                                 <a href="{{ route('subjects.edit', $subject->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">{{ __('Edit') }}</a>
                                                 <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST" class="inline">
                                                     @csrf

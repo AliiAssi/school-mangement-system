@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +7,7 @@ class Subject extends Model
 {
     protected $table = 'subjects';
 
-    protected $fillable = ['name', 'description','abbreviation']; 
+    protected $fillable = ['name', 'description', 'abbreviation']; 
 
     // Define relationships
     public function timetables()
@@ -19,13 +18,14 @@ class Subject extends Model
     public function classes()
     {
         return $this->belongsToMany(_Class::class, 'class_subject', 'subject_id', 'class_id')
-                ->withPivot('required_sessions')
-                ->withTimestamps();
+                    ->withPivot('required_sessions');
     }
 
-    public function users()
+    // Define relationship with teachers through the pivot table
+    public function teachers()
     {
-        return $this->belongsToMany(User::class, 'teacher_subject_class')
-                    ->withPivot('weekly_sessions');
+        return $this->belongsToMany(User::class, 'teacher_subject_class', 'subject_id', 'user_id')
+                    ->withPivot('weekly_sessions')
+                    ->where('isAdmin', 0); // Only teachers
     }
 }

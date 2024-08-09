@@ -11,33 +11,32 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- Subject Details -->
                     <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ __('Name') }}</h3>
-                        <p class="mt-1 text-gray-600 dark:text-gray-400">{{ $subject->name }}</p>
+                        <h3 class="text-lg font-semibold">{{ __('Subject: ') }} {{ $subject->name }}</h3>
+                        <p class="mt-2">{{ __('Description: ') }} {{ $subject->description }}</p>
+                        <p class="mt-2">{{ __('Abbreviation: ') }} {{ $subject->abbreviation }}</p>
+                    </div>
+                    
+                    <!-- Teachers and Grades -->
+                    <div class="mt-6">
+                        <h4 class="text-lg font-semibold">{{ __('Teachers') }}</h4>
+                        @if($teachers->isEmpty())
+                            <p>{{ __('No teachers assigned to this subject.') }}</p>
+                        @else
+                            <ul class="list-disc ml-5">
+                                @foreach($teachers as $teacher)
+                                    <li class="mb-2">
+                                        {{ $teacher->name }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
 
-                    <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ __('Abbreviation') }}</h3>
-                        <p class="mt-1 text-gray-600 dark:text-gray-400">{{ $subject->abbreviation }}</p>
-                    </div>
-
-                    <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ __('Description') }}</h3>
-                        <p class="mt-1 text-gray-600 dark:text-gray-400">{{ $subject->description }}</p>
-                    </div>
-
-                    <!-- Actions -->
-                    <div class="flex space-x-4 mt-6">
-                        <a href="{{ route('subjects.edit', $subject->id) }}" class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-700 focus:outline-none focus:ring focus:ring-yellow-300 transition dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-500">
-                            {{ __('Edit') }}
+                    <!-- Back to subjects list -->
+                    <div class="mt-6">
+                        <a href="{{ route('subjects.index') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            {{ __('Back to Subjects') }}
                         </a>
-
-                        <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this subject?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 transition dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-500">
-                                {{ __('Delete') }}
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>

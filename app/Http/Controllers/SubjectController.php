@@ -18,6 +18,19 @@ class SubjectController extends Controller
 
         return view('subjects.index', compact('subjects'));
     }
+    public function show($id)
+    {
+        // Load the subject with related classes and teachers, ensuring teachers are distinct
+        $subject = Subject::with(['classes','teachers'])->findOrFail($id);
+
+        // Retrieve distinct teachers
+        $distinctTeachers = $subject->teachers->unique('id');
+        $distinctClasses = $subject->classes->unique('id');
+        return view('subjects.show', [
+            'subject' => $subject,
+            'teachers' => $distinctTeachers
+        ]);
+    }
 
     // Show the form for creating a new subject
     public function create()
