@@ -51,6 +51,7 @@ The application features a modern and responsive design powered by Tailwind CSS.
 
 - **View Page**:  
   ![Classes View Page](./demo/classes/index.png)
+  - Pagination is implemented to manage large datasets efficiently.
 
 - **Create Page**:  
   ![Classes Create Page](./demo/classes/create.png)
@@ -62,6 +63,7 @@ The application features a modern and responsive design powered by Tailwind CSS.
 
 - **View Page**:  
   ![Subjects View Page](./demo/subjects/index.png)
+  - Pagination is used to streamline the display of subject data.
 
 - **Show Page**:  
   ![Subjects Show Page](./demo/subjects/show.png)
@@ -76,6 +78,7 @@ The application features a modern and responsive design powered by Tailwind CSS.
 
 - **View Page**:  
   ![Teachers View Page](./demo/teachers/index.png)
+  - Pagination is applied to handle the presentation of teacher records effectively.
 
 - **Show Page**:  
   ![Teachers Show Page](./demo/teachers/show.png)
