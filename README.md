@@ -95,7 +95,9 @@ The application features a modern, responsive design powered by Tailwind CSS. Ke
 ---
 
 # Day 2 Report
-
+### **Updated Dashboard For The Admin**
+- **Dashboard Page**:  
+  ![Dash View Page](./demo/up.png)
 ### **Timetables CRUD Interfaces**
 
 - **View Page**:  
@@ -109,7 +111,7 @@ The application features a modern, responsive design powered by Tailwind CSS. Ke
   **After Selecting Information**  
   ![Timetables Create Page](./demo/timetables/b2.png)
 
-- **Update Page**:  
+- **View Page**:  
   ![Timetables Update Page](./demo/timetables/show.png)
 
 - **Update Page (Alternative)**:  
