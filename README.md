@@ -80,6 +80,7 @@ The application features a modern and responsive design powered by Tailwind CSS.
   ![Teachers View Page](./demo/teachers/index.png)
   - Pagination is applied to handle the presentation of teacher records effectively.
 
+
 - **Show Page**:  
   ![Teachers Show Page](./demo/teachers/show.png)
 
