@@ -1,18 +1,19 @@
 <?php
 
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HandleAutonomousFeaturesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TimeTableController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,9 +23,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resource('subjects', SubjectController::class);
     Route::resource('classes', ClassController::class);
-    // Route::get('/teachers/{user}', [UserController::class, 'show'])->name('teachers.show');
-    // Route::get('/teachers/{teacher}/edit', [UserController::class, 'edit'])->name('teachers.edit');
-    // Route::put('/teachers/{teacher}', [UserController::class, 'update'])->name('teachers.update');
     Route::resource('teachers', UserController::class);
+    Route::resource('timetables', TimeTableController::class);
+    Route::get('/automatically',[HandleAutonomousFeaturesController::class,'handleTimeTableGeneration'])->name('automatically');
+    Route::get('/export',[HandleAutonomousFeaturesController::class,'exportTimetablesToPdf'])->name('export');
 });
 require __DIR__.'/auth.php';

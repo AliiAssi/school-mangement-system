@@ -1,24 +1,30 @@
 <?php
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Timetable extends Model
+class TimeTable extends Model
 {
-    // Define the table associated with the model if it does not follow Laravel's conventions
-    protected $table = 'timetable';
+    use HasFactory;
 
-    // Define the fillable attributes to allow mass assignment
-    protected $fillable = ['class_id', 'user_id', 'subject_id', 'start_time', 'end_time', 'day_of_week'];
+    protected $table = 'timetables';
 
-    // Define relationships
-    public function _class()
+    protected $fillable = [
+        'class_id',
+        'user_id',
+        'subject_id',
+        'start_time',
+        'end_time',
+        'day_of_week',
+    ];
+
+    public function class()
     {
         return $this->belongsTo(_Class::class, 'class_id');
     }
 
-    public function user()
+    public function teacher()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

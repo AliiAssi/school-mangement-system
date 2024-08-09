@@ -1,57 +1,58 @@
 
+
 ---
+
+# Day 1 Report
 
 ## Database Schema Design
 
-The database schema is meticulously crafted to handle educational data efficiently. It consists of the following primary tables:
+The database schema is crafted to efficiently manage educational data, featuring the following primary tables:
 
-- **`classes`**: Contains information about each class. Essential columns include:
-  - `id`: Unique identifier for the class.
-  - `name`: Name of the class.
-  - `grade`: Associated grade level.
+### **Classes Table**
+- **`id`**: Unique identifier for the class.
+- **`name`**: Name of the class.
+- **`grade`**: Associated grade level.
 
-- **`timetable`**: Manages class scheduling with the following key columns:
-  - `class_id`: Foreign key referencing the `classes` table.
-  - `teacher_id`: Foreign key referencing the `users` table (teachers).
-  - `subject_id`: Foreign key referencing the `subjects` table.
-  - `start_time`: Class start time.
-  - `end_time`: Class end time.
-  - `day_of_week`: Day on which the class takes place.
+### **Timetable Table**
+- **`class_id`**: Foreign key referencing the `classes` table.
+- **`teacher_id`**: Foreign key referencing the `users` table (teachers).
+- **`subject_id`**: Foreign key referencing the `subjects` table.
+- **`start_time`**: Start time of the class.
+- **`end_time`**: End time of the class.
+- **`day_of_week`**: Day on which the class is scheduled.
 
-- **`teacher_subject_class`**: A pivot table connecting teachers, subjects, and classes. Key columns are:
-  - `class_id`: Foreign key referencing the `classes` table.
-  - `user_id`: Foreign key referencing the `users` table.
-  - `subject_id`: Foreign key referencing the `subjects` table.
-  - `weekly_sessions`: Number of weekly sessions for the subject in the class.
+### **Teacher_Subject_Class Pivot Table**
+- **`class_id`**: Foreign key referencing the `classes` table.
+- **`user_id`**: Foreign key referencing the `users` table.
+- **`subject_id`**: Foreign key referencing the `subjects` table.
+- **`weekly_sessions`**: Number of weekly sessions for the subject in the class.
 
-- **`class_subject`**: A pivot table handling the many-to-many relationship between classes and subjects. Key columns are:
-  - `class_id`: Foreign key referencing the `classes` table.
-  - `subject_id`: Foreign key referencing the `subjects` table.
-  - `required_sessions`: Number of sessions required for the subject in the class.
+### **Class_Subject Pivot Table**
+- **`class_id`**: Foreign key referencing the `classes` table.
+- **`subject_id`**: Foreign key referencing the `subjects` table.
+- **`required_sessions`**: Number of sessions required for the subject in the class.
 
-The `users` table includes an `is_admin` flag, a boolean field that determines administrative privileges. By default, this flag is set to `false` for regular users.
-
-Foreign key constraints ensure data integrity and proper relationships between tables.
+The `users` table includes an `is_admin` flag to determine administrative privileges, set to `0` by default for regular users. Foreign key constraints are employed to ensure data integrity.
 
 ![Database Schema](./demo/db/schema.png)
 
 ## Authentication
 
-Authentication is managed using Laravel Breeze. New users are initialized as teachers with standard privileges by setting the `is_admin` flag to `0` by default. Administrative privileges can be assigned as needed.
+Authentication is managed via Laravel Breeze. New users are initialized as teachers with the `is_admin` flag set to `0` by default. Administrative privileges can be granted as needed.
 
 ## User Interface Design
 
-The application features a modern and responsive design powered by Tailwind CSS. Key components include:
+The application features a modern, responsive design powered by Tailwind CSS. Key components include:
 
-### Dashboard
+### **Dashboard**
 
 ![Dashboard](./demo/dashboard.png)
 
-### Classes CRUD Interfaces
+### **Classes CRUD Interfaces**
 
 - **View Page**:  
-  ![Classes View Page](./demo/classes/index.png)
-  - Pagination is implemented to manage large datasets efficiently.
+  ![Classes View Page](./demo/classes/index.png)  
+  Pagination is implemented for efficient data management.
 
 - **Create Page**:  
   ![Classes Create Page](./demo/classes/create.png)
@@ -59,11 +60,11 @@ The application features a modern and responsive design powered by Tailwind CSS.
 - **Update Page**:  
   ![Classes Update Page](./demo/classes/edit.png)
 
-### Subjects CRUD Interfaces
+### **Subjects CRUD Interfaces**
 
 - **View Page**:  
-  ![Subjects View Page](./demo/subjects/index.png)
-  - Pagination is used to streamline the display of subject data.
+  ![Subjects View Page](./demo/subjects/index.png)  
+  Pagination streamlines subject data display.
 
 - **Show Page**:  
   ![Subjects Show Page](./demo/subjects/show.png)
@@ -74,11 +75,11 @@ The application features a modern and responsive design powered by Tailwind CSS.
 - **Update Page**:  
   ![Subjects Update Page](./demo/subjects/edit.png)
 
-### Teachers CRUD Interfaces
+### **Teachers CRUD Interfaces**
 
 - **View Page**:  
-  ![Teachers View Page](./demo/teachers/index.png)
-  - Pagination is applied to handle the presentation of teacher records effectively.
+  ![Teachers View Page](./demo/teachers/index.png)  
+  Pagination ensures effective presentation of teacher records.
 
 - **Show Page**:  
   ![Teachers Show Page](./demo/teachers/show.png)
@@ -89,6 +90,56 @@ The application features a modern and responsive design powered by Tailwind CSS.
 - **Update Page**:  
   ![Teachers Update Page](./demo/teachers/edit.png)
 
-**Note**: Certain features, such as timetable management, are still under development.
+**Note**: Timetable management features are still under development.
 
 ---
+
+# Day 2 Report
+
+### **Timetables CRUD Interfaces**
+
+- **View Page**:  
+  This dynamic page displays timetables for a specific class or all classes.
+  ![Timetables View Page](./demo/timetables/view.png)
+
+- **Create Page**:  
+  Dynamic form approach for creating timetables.
+  **Part 1**  
+  ![Timetables Create Page](./demo/timetables/b1.png)  
+  **After Selecting Information**  
+  ![Timetables Create Page](./demo/timetables/b2.png)
+
+- **Update Page**:  
+  ![Timetables Update Page](./demo/timetables/show.png)
+
+- **Update Page (Alternative)**:  
+  ![Timetables Update Page](./demo/timetables/update.png)
+
+### **Automatic Timetables Generation Interface**
+
+- **View Page**:  
+  ![Automatic Timetables Generation](./demo/autogeneration/generate.png)
+
+- **Error Display Page**:  
+  ![Auto Generation Error](./demo/autogeneration/error.png)  
+  Displayed when auto-generation is not possible.
+
+### **Export Classes Timetables to PDF**
+
+- **Export Button**:  
+  ![Export Classes Timetables to PDF](./demo/pdf/export.png)  
+  Includes a button for exporting class schedules to PDF.
+
+- **PDF Result**:  
+  ![PDF Result](./demo/pdf/pdf.png)  
+  Generated using the `barryvdh/laravel-dompdf` library.
+
+### **Allow Teachers to See Only Their Timetables**
+
+- **Dashboard**:  
+  ![Teacher Timetable Dashboard](./demo/teacher/teacher-timetable.png)
+
+**Note**: An algorithm currently handles timetable scheduling respecting constraints. Future versions may include an AI-based approach for enhanced scheduling.
+
+---
+

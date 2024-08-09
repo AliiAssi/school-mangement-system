@@ -20,7 +20,7 @@ class _Class extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class, 'class_subject')
+        return $this->belongsToMany(Subject::class, 'class_subject', 'subject_id','class_id')
                     ->withPivot('required_sessions');
     }
 

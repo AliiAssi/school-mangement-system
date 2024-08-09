@@ -30,16 +30,17 @@
                                             <div class="space-y-2">
                                                 @foreach($subject->classes as $class)
                                                     @php
-                                                        // Fetch weekly sessions directly
                                                         $pivotData = \App\Models\UserSubjectClass::where('user_id', $teacher->id)
                                                             ->where('subject_id', $subject->id)
                                                             ->where('class_id', $class->id)
                                                             ->first();
                                                     @endphp
-                                                    <div class="dark:bg-gray-600 p-3 border border-gray-300 dark:border-gray-500 rounded-md shadow-sm">
-                                                        <p class="text-gray-800 dark:text-gray-200"><strong>Grade:</strong> {{ $class->grade ?? 'N/A' }}</p>
-                                                        <p class="text-gray-800 dark:text-gray-200"><strong>Weekly Sessions:</strong> {{ $pivotData ? $pivotData->weekly_sessions : 'N/A' }}</p>
-                                                    </div>
+                                                    @if($class->grade >= 0 && $pivotData && $pivotData->weekly_sessions >= 0)
+                                                        <div class="dark:bg-gray-600 p-3 border border-gray-300 dark:border-gray-500 rounded-md shadow-sm">
+                                                            <p class="text-gray-800 dark:text-gray-200"><strong>Grade:</strong> {{ $class->grade ?? 'N/A' }}</p>
+                                                            <p class="text-gray-800 dark:text-gray-200"><strong>Weekly Sessions:</strong> {{ $pivotData ? $pivotData->weekly_sessions : 'N/A'}}</p>
+                                                        </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>

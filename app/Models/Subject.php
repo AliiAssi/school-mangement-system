@@ -9,12 +9,6 @@ class Subject extends Model
 
     protected $fillable = ['name', 'description', 'abbreviation']; 
 
-    // Define relationships
-    public function timetables()
-    {
-        return $this->hasMany(Timetable::class, 'subject_id');
-    }
-
     public function classes()
     {
         return $this->belongsToMany(_Class::class, 'class_subject', 'subject_id', 'class_id')
@@ -27,5 +21,9 @@ class Subject extends Model
         return $this->belongsToMany(User::class, 'teacher_subject_class', 'subject_id', 'user_id')
                     ->withPivot('weekly_sessions')
                     ->where('isAdmin', 0); // Only teachers
+    }
+    public function timetables()
+    {
+        return $this->hasMany(TimeTable::class, 'subject_id');
     }
 }

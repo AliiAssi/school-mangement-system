@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\_Class;
+use App\Models\TimeTable;
 use Illuminate\Http\Request;
 
 class ClassController extends Controller
@@ -40,8 +41,10 @@ class ClassController extends Controller
     // Display the specified class
     public function show($id)
     {
-        $class = _Class::findOrFail($id);
-        return view('classes.show', compact('class'));
+        $classId = $id;
+        $classes = _Class::all();
+        $timetables = TimeTable::where('class_id', $classId)->get();
+        return view('timetables.index', compact('classes', 'timetables', 'classId'));
     }
 
     // Show the form for editing the specified class
