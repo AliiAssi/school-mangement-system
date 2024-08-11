@@ -80,6 +80,11 @@
                         </div>
                     @else
                         <div class="text-center text-gray-900 dark:text-gray-100">
+                            @if (session('error'))
+                                <div class="bg-red-500 text-white p-4 rounded mb-4">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <h1>{{ __('Welcome, teacher ') . Auth::user()->name }}</h1>
                             <br>
                             <hr />

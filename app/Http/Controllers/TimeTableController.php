@@ -7,6 +7,7 @@ use App\Models\Subject;
 use App\Models\TimeTable;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TimeTableController extends Controller
@@ -213,6 +214,10 @@ class TimeTableController extends Controller
      */
     public function update(Request $request, $timeTable_id)
     {
+        if (Auth::user() && Auth::user()->isAdmin == 0){
+            return redirect()->route('dashboard')
+                        ->with('error', 'you re not authorized to update this resource');
+        }
         $timeTable = TimeTable::findOrFail($timeTable_id);
         // dd($request->all());
         // Validate incoming request data
@@ -316,8 +321,20 @@ class TimeTableController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TimeTable $timeTable)
+    public function destroy($id)
     {
-        // Code to delete a timetable
+        $timeTable = TimeTable::findOrFail($id);
+        try {
+            if (Auth::user() && Auth::user()->isAdmin == 0){
+                return redirect()->route('dashboard')
+                            ->with('error', 'you re not authorized to delete this resource');
+            }
+            $timeTable->delete();
+            return redirect()->route('timetables.index')
+                            ->with('success', 'TimeTable deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('timetables.index')
+                            ->with('error', 'Failed to delete TimeTable. Please try again.');
+        }
     }
 }

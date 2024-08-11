@@ -185,8 +185,9 @@ class UserController extends Controller
 
 
     // Remove the specified teacher from storage.
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully.');
     }

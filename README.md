@@ -114,7 +114,7 @@ The application features a modern, responsive design powered by Tailwind CSS. Ke
 - **View Page**:  
   ![Timetables Update Page](./demo/timetables/show.png)
 
-- **Update Page (Alternative)**:  
+- **Update Page**:  
   ![Timetables Update Page](./demo/timetables/update.png)
 
 ### **Automatic Timetables Generation Interface**
