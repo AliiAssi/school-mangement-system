@@ -35,6 +35,7 @@
 
 6. **Task Objective:**
    - Generate automatic timetables for all classes. 
+   - Setup in mentioned with many constraints as break and start time and end time and such that off days and sessions delay 
    - **Implementation Steps:**
      1. For each class:
         - Retrieve all related subjects.

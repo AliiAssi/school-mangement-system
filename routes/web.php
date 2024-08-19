@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HandleAutonomousFeaturesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeTableController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('classes', ClassController::class);
     Route::resource('teachers', UserController::class);
     Route::resource('timetables', TimeTableController::class);
+    Route::resource('settings', SettingsController::class);
     Route::get('/automatically',[HandleAutonomousFeaturesController::class,'handleTimeTableGeneration'])->name('automatically');
     Route::get('/export',[HandleAutonomousFeaturesController::class,'exportTimetablesToPdf'])->name('export');
 });

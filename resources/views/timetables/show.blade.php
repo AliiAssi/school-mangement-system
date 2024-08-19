@@ -22,7 +22,7 @@
                             Day: {{ $timetable->day_of_week }}
                         </div>
                         <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                            Time: {{ (int) explode(':', $timetable->start_time)[0] }}:00 - {{ (int) explode(':', $timetable->end_time)[0] }}:00
+                            Time: {{ $timetable->start_time }} - {{ $timetable->end_time }}
                         </div>
                     </div>
 
