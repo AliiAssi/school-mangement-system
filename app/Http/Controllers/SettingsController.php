@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
@@ -12,6 +13,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->isAdmin == 0)  return redirect()->back();
         // Define the file path relative to the storage directory
         $filePath = 'util/settings.txt';
 
