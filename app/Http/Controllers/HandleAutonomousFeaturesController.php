@@ -133,8 +133,9 @@ class HandleAutonomousFeaturesController extends Controller
 
     public function handleTimeTableGeneration()
     {
+        //delete all rows
         TimeTable::truncate();
-
+        // implement the process
         $classes = _Class::all();
 
         foreach ($classes as $class) {
