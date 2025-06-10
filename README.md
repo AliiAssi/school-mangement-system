@@ -1,8 +1,7 @@
 
-
----
-
-# Day 1 Report
+# School Management System 📚🏫
+## Overview
+This project is a Laravel-based school management system designed to simplify the management of educational data including classes, subjects, teachers, and timetables. It features a modern responsive interface built with Tailwind CSS and supports role-based authentication through Laravel Breeze. The system includes dynamic timetable creation, PDF export, and teacher-specific timetable views.
 
 ## Database Schema Design
 
